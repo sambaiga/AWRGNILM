@@ -1,5 +1,5 @@
 # ADRG_NILM
-<img src="figure/pubplications/Adaptive-RP.png" width="47%" height="47%">
+<img src="Adaptive-RP.png" width="47%" height="47%">
 
 Adaptive Recurrence Graph for Appliance classification in NILM.
 
