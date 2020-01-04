@@ -1,11 +1,14 @@
 # ADRG_NILM
-<img src="Adaptive-RP.png" width="47%" height="47%">
+<img src="Adaptive-RP.png" width="80%" height="50%">
 
-Adaptive Recurrence Graph for Appliance classification in NILM.
+## Overview
+In this paper, we propose Adaptive Recurrence Graph for Appliance classification in NILM. The ADRG  treat  recurrence hyper-parameters  as a learn-able parameters like ordinary neural network weights.
 
-This package contains a Python implementation of Adaptive Recurrence Graph for Appliance classification in NILM. The ADRG  treat  recurrence hyper-parameters  as a learn-able parameters like ordinary neural network weights.
 
-![Alt text](relative/path/to/img.jpg?raw=true "Title")
+
+
+This package contains a Python implementation of Adaptive Recurrence Graph for Appliance classification in NILM. 
+
 
 
 ## Prerequisites
@@ -19,7 +22,12 @@ This package contains a Python implementation of Adaptive Recurrence Graph for A
 - seaborn
 - nptdms 
 
-## Reproducible Research
+## Usage
 
-To replicate experiment results you can run the run_experiments code in the src repository
+1. Preprocess the data for a specific dataset. Note: the data directory provided includes preprocessed data for the two datasets LILAC and PLAID.
+2. To replicate experiment results you can run the `run_experiments.py` code in the src directory. 
+
+Feel free to open an issue with any questions.
+
+## Acknowledgement
 
