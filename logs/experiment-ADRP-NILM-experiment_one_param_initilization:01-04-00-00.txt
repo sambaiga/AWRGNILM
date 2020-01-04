@@ -1,0 +1,2 @@
+Starting ADRP-NILM-experiment_one_param_initilization:01-04-00-00 experiment
+Load lilac aggregated data from ../data/lilac/aggregated/

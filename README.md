@@ -5,3 +5,17 @@ This package contains a Python implementation of Adaptive Recurrence Graph for A
 
 
 ## Prerequisites
+- python
+- numpy
+- pandas
+- matplotlib
+- tqdm
+- torch
+- sklearn
+- seaborn
+- nptdms 
+
+## Reproducible Research
+
+To replicate experiment results you can run the run_experiments code in the src repository
+
