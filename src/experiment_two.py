@@ -74,7 +74,7 @@ def train_model_stratified(input_feature, y,
                                                             checkpoint,
                                                             metric_fn,
                                                             csv_logger)
-        pred, test= get_prediction(model, loaders['val'], checkpoint, device,1, 0.5, singlelabel=True)
+        pred, test= get_prediction(model, loaders['val'], checkpoint, device,1)
         plot_learning_curve(train_loss, train_acc, test_loss, test_acc)
         savefig(f"../figure/temp/{file_name}_{str(k)}",format=".pdf")
         

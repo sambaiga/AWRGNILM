@@ -1,0 +1,19 @@
+Starting ADRP-NILM-experiment_one_emb_size_parameter:01-04-00-00 experiment
+Load plaid aggregated data from ../data/plaid/aggregated/
+fit model for plaid_adaptive_30_CNN_1_parameters_emb_size_10_10
+test_loss: 1.747, test_score: 0.4323
+test_loss: 1.202, test_score: 0.5417
+save best model
+test_loss: 0.898, test_score: 0.8177
+save best model
+test_loss: 0.699, test_score: 0.8490
+save best model
+test_loss: 0.644, test_score: 0.8125
+test_loss: 0.596, test_score: 0.8438
+test_loss: 0.631, test_score: 0.8307
+test_loss: 0.390, test_score: 0.8854
+save best model
+test_loss: 0.447, test_score: 0.8932
+save best model
+test_loss: 0.362, test_score: 0.9193
+save best model

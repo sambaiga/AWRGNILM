@@ -73,7 +73,7 @@ def train_model(Xtrain, Xtest, ytrain, ytest, width,
                                                         csv_logger)
     end_time    = time.time()
     time_used   = end_time - start_time
-    pred, test  = get_prediction(model, loaders['val'], checkpoint, device,1, 0.5, singlelabel=True)
+    pred, test  = get_prediction(model, loaders['val'], checkpoint, device,1)
     plot_learning_curve(train_loss, train_acc, test_loss, test_acc)
     savefig(f"../figure/temp/{file_name}",format=".pdf")
     

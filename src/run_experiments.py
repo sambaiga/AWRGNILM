@@ -16,7 +16,7 @@ def stop_logging(f):
 
 datasets = ["plaid", "lilac"]
 feature = "adaptive"
-n_epochs  =  10
+n_epochs  =  100
 batch_size = 16
 width=50
 """
