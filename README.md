@@ -1,8 +1,8 @@
-# ADRG_NILM
+# AWDRG_NILM
 <img src="Adaptive-RP.png" width="80%" height="50%">
 
 ## Overview
-In this paper, we propose Adaptive Recurrence Graph for Appliance classification in NILM. The ADRG  treat  recurrence hyper-parameters  as a learn-able parameters like ordinary neural network weights.
+In this paper, we propose Adaptive weighted Recurrence Graph for Appliance classification in NILM. The AWDRG  treat  recurrence hyper-parameters  as a learn-able parameters like ordinary neural network weights.
 
 
 
