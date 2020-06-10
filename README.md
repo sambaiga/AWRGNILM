@@ -1,8 +1,8 @@
 # Adaptive Weighted Recurrence Graph for Appliance Recognition in Non-Intrusive Load Monitoring
 This repository is the official implementation of [Adaptive Weighted Recurrence Graph for Appliance Recognition in Non-Intrusive Load Monitoring](). 
-<img src="Adaptive-RP.png" width="80%" height="50%">
+This paper proposes hyper-parameter free weighted recurrence graphs block (AWRG) for appliance feature representation in NILM and apply Convolutional Neural Networks for classification. The adaptive feature representation map  one-cycle current-waveform into  recurrence graphs that give few more values instead of binary output and treat its hyper-parameters as learn-able parameters. The proposed technique is evaluated on two aggregated data-sets;  multi-dimension three phases industrial (LILACD) dataset and single-phase  residential (PLAID) data-set
 
-In this paper, we propose Adaptive weighted Recurrence Graph for Appliance classification in NILM. The AWDRG  treat  recurrence hyper-parameters  as a learn-able parameters like ordinary neural network weights.
+<img src="Adaptive-RP.png" width="80%" height="50%">
 This package contains a Python implementation of Adaptive Recurrence Graph for Appliance classification in NILM. 
 
 ## Requirements
