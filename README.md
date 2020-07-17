@@ -16,8 +16,11 @@ This package contains a Python implementation of Adaptive Recurrence Graph for A
 - seaborn
 - nptdms 
 
+## Research Paper
 
+If you find this tool useful and use it (or parts of it), we ask you to cite the following work in your publications:
 
+> Anthony Faustine, Lucas Pereira, and Christoph Klemenjak. Adaptive Weighted Recurrence Graphs for Appliance Recognition in Non-Intrusive Load Monitoring. IEEE Transactions on Smart Grid, 2020.
 
 
 ## Usage
