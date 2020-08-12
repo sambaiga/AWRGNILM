@@ -1,5 +1,5 @@
 # Adaptive Weighted Recurrence Graph for Appliance Recognition in Non-Intrusive Load Monitoring
-This repository is the official implementation of [Adaptive Weighted Recurrence Graph for Appliance Recognition in Non-Intrusive Load Monitoring](). 
+This repository is the official implementation of [Adaptive Weighted Recurrence Graph for Appliance Recognition in Non-Intrusive Load Monitoring](https://ieeexplore.ieee.org/abstract/document/9144492). 
 This paper proposes hyper-parameter free weighted recurrence graphs block (AWRG) for appliance feature representation in NILM and apply Convolutional Neural Networks for classification. The proposed AWRG block is included in the learning pipe-line as part of the end-to-end feature learning with deep learning networks. We conduct an extensive evaluation of two datasets collected from residential and industrial environments. In contrast to other approaches that use sub-metered data, we test our method on aggregated power measurements, which is much more realistic. Furthermore, we contrast the multi-dimension three-phase system in industrial settings and the single-phase system in residential buildings, which is not common in the literature. 
 
 <img src="Adaptive-RP.png" width="80%" height="50%">
@@ -20,7 +20,19 @@ This package contains a Python implementation of Adaptive Recurrence Graph for A
 
 If you find this tool useful and use it (or parts of it), we ask you to cite the following work in your publications:
 
-> Anthony Faustine, Lucas Pereira, and Christoph Klemenjak. Adaptive Weighted Recurrence Graphs for Appliance Recognition in Non-Intrusive Load Monitoring. IEEE Transactions on Smart Grid, 2020.
+> A. Faustine, L. Pereira and C. Klemenjak, "Adaptive Weighted Recurrence Graphs for Appliance Recognition in Non-Intrusive Load Monitoring," in IEEE Transactions on Smart Grid, doi: 10.1109/TSG.2020.3010621.
+
+```tex
+  @ARTICLE{9144492,
+  author={A. {Faustine} and L. {Pereira} and C. {Klemenjak}},
+  journal={IEEE Transactions on Smart Grid}, 
+  title={Adaptive Weighted Recurrence Graphs for Appliance Recognition in Non-Intrusive Load Monitoring}, 
+  year={2020},
+  volume={},
+  number={},
+  pages={1-1},
+  }
+```
 
 
 ## Usage
