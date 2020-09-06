@@ -1,3 +1,155 @@
+import numpy as np
+from sklearn.metrics import roc_curve, auc, f1_score, accuracy_score, precision_recall_curve
+import pandas as pd
+import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
+import matplotlib
+import seaborn as sns
+#sns.color_palette('husl', n_colors=20)
+from sklearn.metrics import confusion_matrix, f1_score
+import itertools
+from sklearn.metrics import confusion_matrix, f1_score, matthews_corrcoef, zero_one_loss
+nice_fonts = {
+        # Use LaTeX to write all text
+        "text.usetex": True,
+        "text.latex.preamble" : [r'\usepackage{amsmath}',r'\usepackage{amssymb}'],
+        "font.family": "serif",
+        # Always save as 'tight'
+        "savefig.bbox" : "tight",
+        "savefig.pad_inches" : 0.05,
+        "xtick.direction" : "in",
+        "xtick.major.size" : 3,
+        "xtick.major.width" : 0.5,
+        "xtick.minor.size" : 1.5,
+        "xtick.minor.width" : 0.5,
+        "xtick.minor.visible" : False,
+        "xtick.top" : True,
+        "ytick.direction" : "in",
+        "ytick.major.size" : 3,
+        "ytick.major.width" : 0.5,
+        "ytick.minor.size" : 1.5,
+        "ytick.minor.width" : 0.5,
+        "ytick.minor.visible" : False,
+        "ytick.right" : True,
+        "figure.dpi" : 1200,
+        "font.serif" : "Times New Roman",
+        "mathtext.fontset" : "dejavuserif",
+        "axes.labelsize": 10,
+        "font.size": 12,
+        # Make the legend/label fonts a little smaller
+        "legend.fontsize": 10,
+        "xtick.labelsize": 10,
+        "ytick.labelsize": 10,
+        # Set line widths
+        "axes.linewidth" : 0.5,
+        "grid.linewidth" : 0.5,
+        "lines.linewidth" : 1.,
+        # Remove legend frame
+        "legend.frameon" : False
+}
+matplotlib.rcParams.update(nice_fonts)
+SPINE_COLOR="gray"
+colors =[plt.cm.Blues(0.6), plt.cm.Reds(0.4), plt.cm.Greens(0.6), '#ffcc99', plt.cm.Greys(0.6)]
+lilac_names=['1-phase-motor', '3-phase-motor', 'Bulb',
+       'CoffeeMaker', 'Drilling', 'Dumper',
+       'FluorescentLamp', 'Freq-conv-squirrel-3', 'HairDryer',
+       'Kettle', 'Raclette', 'Refrigerator', 'Resistor',
+       'Squirrel-3', 'Squirrel-3-2x', 'Vacuum']
+
+plaid_names = ['CFL','ILB','Waterkettle','Fan','AC','HairIron','LaptopCharger','SolderingIron','Fridge','Vacuum','CoffeeMaker','FridgeDefroster']
+lilac_labels={'1-phase-async-motor':"1P-Motor", '3-phase-async-motor':"3P-Motor", 'Bulb':"ILB",
+       'Coffee-machine':"CM", 'Drilling-machine':"DRL", 'Dumper-machine':"3P-DPM",
+       'Fluorescent-lamp':"CFL", 'Freq-conv-squirrel-3-2x':"3P-FCS-2x", 'Hair-dryer':"Dryer",
+       'Kettle':"KT", 'Raclette':"RC", 'Refrigerator':"Fridge", 'Resistor':"Resistor",
+       'Squirrel-3-async':"3P-SQL", 'Squirrel-3-async-2x':"3P-SQL-2x", 'Vacuum-cleaner':"Vacuum"}
+
+plaid_labels = {"Compact fluorescent lamp":'CFL',
+               'Bulb':"ILB",'Kettle':"KT",'Fan':"Fan",'AC':'AC',
+               'HairIron':"HairIron",'LaptopCharger':"Laptop",
+               'SolderingIron':"SLD",'Fridge':"Fridge",'Vacuum':"Vacuum",'CoffeeMaker':"CM",'FridgeDefroster':"FRZ"}
+
+
+
+def set_box_color(bp, color):
+    plt.setp(bp['boxes'], color=color)
+    plt.setp(bp['whiskers'], color=color)
+    plt.setp(bp['caps'], color=color)
+    plt.setp(bp['medians'], color=color)
+    plt.setp(bp['fliers'], markeredgecolor=color)
+
+def set_figure_size(fig_width=None, fig_height=None, columns=2):
+    assert(columns in [1,2])
+
+    if fig_width is None:
+        fig_width = 3.39 if columns==1 else 6.9 # width in inches
+
+    if fig_height is None:
+        golden_mean = (np.sqrt(5)-1.0)/2.0    # Aesthetic ratio
+        fig_height = fig_width*golden_mean # height in inches
+
+    MAX_HEIGHT_INCHES = 8.0
+    if fig_height > MAX_HEIGHT_INCHES:
+        print("WARNING: fig_height too large:" + fig_height + 
+              "so will reduce to" + MAX_HEIGHT_INCHES + "inches.")
+        fig_height = MAX_HEIGHT_INCHES
+    return (fig_width, fig_height)
+
+
+def format_axes(ax):
+    
+    for spine in ['top', 'right']:
+        ax.spines[spine].set_visible(False)
+        
+
+    for spine in ['left', 'bottom']:
+        ax.spines[spine].set_color(SPINE_COLOR)
+        ax.spines[spine].set_linewidth(0.5)
+    
+    
+    ax.yaxis.set_ticks_position('left')
+    ax.xaxis.set_ticks_position('bottom')
+
+    for axis in [ax.xaxis, ax.yaxis]:
+        axis.set_tick_params(direction='out', color=SPINE_COLOR)
+    return ax
+
+def figure(fig_width=None, fig_height=None, columns=2):
+    """
+    Returns a figure with an appropriate size and tight layout.
+    """
+    fig_width, fig_height =set_figure_size(fig_width, fig_height, columns)
+    fig = plt.figure(figsize=(fig_width, fig_height))
+    return fig
+
+def subplots(fig_width=None, fig_height=None, *args, **kwargs):
+    """
+    Returns subplots with an appropriate figure size and tight layout.
+    """
+    fig_width, fig_height = get_width_height(fig_width, fig_height, columns=2)
+    fig, axes = plt.subplots(figsize=(fig_width, fig_height), *args, **kwargs)
+    return fig, axes
+
+def legend(ax, ncol=3, loc=9, pos=(0.5, -0.1)):
+    leg=ax.legend(loc=loc, bbox_to_anchor=pos, ncol=ncol)
+    return leg
+
+def savefig(filename, leg=None, format='.eps', *args, **kwargs):
+    """
+    Save in PDF file with the given filename.
+    """
+    if leg:
+        art=[leg]
+        plt.savefig(filename + format, additional_artists=art, bbox_inches="tight", *args, **kwargs)
+    else:
+        plt.savefig(filename + format,  bbox_inches="tight", *args, **kwargs)
+    plt.close()
+
+
+
+
+
+
+
 def plot_confusion_matrix(cm, classes,
                           normalize=False,
                           title='Confusion matrix',save = True,
